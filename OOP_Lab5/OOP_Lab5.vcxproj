@@ -141,6 +141,10 @@
   <ItemGroup>
     <ClCompile Include="OOP_Lab5.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Figures.h" />
+    <ClInclude Include="FiguresVirtual.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
