@@ -12,9 +12,8 @@ Figure* ReturnFigure2(){
 	return a;
 }
 Figure& ReturnFigure3(){
-	Figure temp;
-	Figure& a = temp;
-	return a;
+	Figure *temp = new Figure();
+	return *temp;
 }
 std::unique_ptr<Figure> ReturnFigureUnique(std::unique_ptr<Figure> a){
 	return a;							// а передается из функции если результат функции не записывается в переменную, то память освобождается
@@ -50,7 +49,7 @@ void func3(Figure& obj){
 
 
 int main(){
-	/*
+	
 	Figure* a = new Figure();
 	Figure* b = new Line(10);
 	Line* c = new Line(20);
