@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include <memory>
-#include "Figures.h";
-//#include "FiguresVirtual.h";
+//#include "Figures.h";
+#include "FiguresVirtual.h";
 
 Figure ReturnFigure1(){
 	Figure a;
@@ -37,6 +37,9 @@ void func2(Figure* obj){
 	if(obj->isA("Line")){
 		dynamic_cast<Line*>(obj)->length();
 	}
+	if(obj->isA("Sector")){
+		dynamic_cast<Sector*>(obj)->length();
+	}
 };
 void func3(Figure& obj){
 	std::cout << "func3:\n";
@@ -52,10 +55,11 @@ int main(){
 	
 	Figure* a = new Figure();
 	Figure* b = new Line(10);
-	Line* c = new Line(20);
+	Sector* c = new Sector(20);
+	Figure* d = dynamic_cast<Figure*>(c);
 	std::cout << "\n";
 
-	func1(a);
+	/*func1(a);
 	std::cout << "\n";
 	func2(a);
 	std::cout << "\n";
@@ -68,7 +72,7 @@ int main(){
 	std::cout << "\n";
 	func3(*b);
 	std::cout << "\n";
-	std::cout << "\n";
+	std::cout << "\n";*/
 	func1(c);
 	std::cout << "\n";
 	func2(c);
@@ -77,6 +81,11 @@ int main(){
 	std::cout << "\n";
 	std::cout << "\n";
 	std::cout << "\n";
+	func1(d);
+	std::cout << "\n";
+	func2(d);
+	std::cout << "\n";
+	func3(*d);
 
 	/*
 	a->draw();
@@ -124,14 +133,14 @@ int main(){
 	d = nullptr;
 	std::cout << "\n\n\n";
 	//*/
-	Figure a = (Figure&)ReturnFigure1();
+	/*Figure a = (Figure&)ReturnFigure1();
 	std::cout << "\n\n";
 	Figure* b = ReturnFigure2();
 	std::cout << "\n\n";
 	Figure& c = ReturnFigure3();
 	std::cout << "\n\n";
 
-	delete(b);
+	delete(b);*/
 
 	/*
 	{

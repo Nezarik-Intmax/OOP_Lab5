@@ -25,14 +25,14 @@ public:
 	virtual std::string classname(){
 		return "Figure";
 	}
-	bool isA(std::string classname){
-		return (classname == this->classname()) ? true : false;
+	virtual bool isA(std::string classname){
+		return (classname == "Figure") ? true : false;
 	}
 };
 class Line: public Figure{
-private:
-	int len;
+//protected:
 public:
+	int len;
 	Line():len(0){
 		std::cout << "Line constructor\n";
 	}
@@ -63,5 +63,46 @@ public:
 	}
 	virtual std::string classname() override{
 		return "Line";
+	}
+	virtual bool isA(std::string classname) override{
+		return (classname == "Line") || Figure::isA(classname);
+	}
+};
+class Sector: public Line{
+public:
+	Sector(){
+		std::cout << "Line constructor\n";
+	}
+	Sector(int len):Line(len){
+		std::cout << "Line constructor\n";
+	}
+	Sector(Sector* a){
+		len = a->getLength();
+		std::cout << "Line(copy) constructor\n";
+	}
+	Sector(Sector& a){
+		std::cout << "Line(copy) constructor\n";
+	}
+	virtual ~Sector() override{
+		std::cout << "Line destructor\n";
+	}
+	virtual void endDraw() override{
+		std::cout << " ------ has been drawn\n";
+	}
+	virtual void draw() override{
+		std::cout << "Line";
+		endDraw();
+	}
+	void length(){
+		std::cout << "Length: " << len << "\n";
+	}
+	int getLength(){
+		return len;
+	}
+	virtual std::string classname() override{
+		return "Sector";
+	}
+	virtual bool isA(std::string classname) override{
+		return (classname == "Sector") || Line::isA(classname);
 	}
 };
